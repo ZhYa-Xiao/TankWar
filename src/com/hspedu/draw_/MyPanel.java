@@ -31,7 +31,7 @@ public class MyPanel extends JPanel implements KeyListener {
 
 
     }
-
+///
     public void drawTank(int x,int y,Graphics g,int direct,int type) {
 
         switch (type) {
