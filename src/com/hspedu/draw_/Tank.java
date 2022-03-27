@@ -11,7 +11,7 @@ public class Tank {
         this.x = x;
         this.y = y;
     }
-
+//
     public int getSpeed() {
         return speed;
     }
