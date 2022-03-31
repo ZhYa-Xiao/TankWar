@@ -7,11 +7,13 @@ public class Tank {
     private int direct;
     private int speed = 1;
 
+
+
     public Tank(int x, int y) {
         this.x = x;
         this.y = y;
     }
-//
+
     public int getSpeed() {
         return speed;
     }

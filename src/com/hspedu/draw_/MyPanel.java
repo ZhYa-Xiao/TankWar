@@ -24,6 +24,10 @@ public class MyPanel extends JPanel implements KeyListener {
         super.paint(g);
         g.fillRect(0,0,1000,750);
         drawTank(hero.getX(),hero.getY(),g,hero.getDirect(),1);
+        if(hero.bullet != null) {
+            drawBullet(hero.bullet.getBx(), hero.bullet.getBy(), g);
+        }
+
         for (int i = 0; i < enemyTanks.size(); i++) {
             EnemyTank tank = enemyTanks.get(i);
             drawTank(tank.getX(),tank.getY(),g,tank.getDirect(),0);
@@ -77,6 +81,11 @@ public class MyPanel extends JPanel implements KeyListener {
         }
     }
 
+    public void drawBullet(int x,int y,Graphics g) {
+        g.setColor(Color.red);
+        g.fillOval(x - 5,y - 5,5,5);
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -96,6 +105,12 @@ public class MyPanel extends JPanel implements KeyListener {
         } else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
             hero.moveLeft();
             hero.setDirect(3);
+        } else if(e.getKeyCode() == KeyEvent.VK_J) {
+            System.out.println("发射炮弹");
+            hero.bullet = new Bullet(hero.getX(), hero.getY(), hero.getDirect());
+
+            Thread thread = new Thread(hero.bullet);
+            thread.start();
         }
         this.repaint();
     }
